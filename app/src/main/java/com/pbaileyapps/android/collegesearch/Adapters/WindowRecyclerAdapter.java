@@ -54,7 +54,7 @@ public class WindowRecyclerAdapter extends RecyclerView.Adapter<WindowRecyclerAd
                 String countryText = item.getCountry();
                 holder.textView.setText(data.toUpperCase());
                 holder.countryView.setText(countryText.toUpperCase());
-
+                holder.trashView.setVisibility(View.INVISIBLE);
                 holder.likeView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -86,14 +86,14 @@ public class WindowRecyclerAdapter extends RecyclerView.Adapter<WindowRecyclerAd
     class WindowViewHolder extends RecyclerView.ViewHolder{
         private TextView textView;
         private TextView countryView;
-        private ImageView likeView;
+        private ImageView likeView,trashView;
         likeInterface likeInstance;
         public WindowViewHolder(View v){
             super(v);
             countryView = v.findViewById(R.id.country);
             textView = v.findViewById(R.id.list_item_text);
             likeView = v.findViewById(R.id.thumbsup);
-
+            trashView = v.findViewById(R.id.trash);
         }
     }
 

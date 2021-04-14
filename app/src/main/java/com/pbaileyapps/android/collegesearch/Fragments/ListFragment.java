@@ -27,7 +27,7 @@ import java.util.List;
  * Use the {@link ListFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ListFragment extends Fragment {
+public class ListFragment extends Fragment  {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -86,7 +86,12 @@ public class ListFragment extends Fragment {
 
             CollegeRecycler collegeRecycler =
                     new CollegeRecycler(getContext(),listViewModel);
-
+            collegeRecycler.deleteInterfaceInstance = new CollegeRecycler.deleteInterface() {
+                @Override
+                public void deleteCollege(College college, int position) {
+                    listViewModel.deleteCollege(college);
+                }
+            };
             listViewModel.getAllColleges().observe(getViewLifecycleOwner(), new Observer<List<College>>() {
                 @Override
                 public void onChanged(List<College> colleges) {
@@ -104,6 +109,7 @@ public class ListFragment extends Fragment {
 
         return v;
     }
+
     /*class RetroAsyncTask extends AsyncTask<WindowItem,Void,WindowItem>{
         @Override
         protected WindowItem doInBackground(WindowItem ... items) {

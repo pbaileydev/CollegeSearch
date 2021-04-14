@@ -18,23 +18,32 @@
         android:layout_centerHorizontal="true"
         android:textAlignment="center"
         android:id="@+id/country"/>
-    <TextView
-        android:textColor="@android:color/white"
-        android:layout_below="@id/country"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:textAlignment="center"
-        android:id="@+id/list_item_text"/>
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/thumbsup"
         android:src="@drawable/ic_baseline_thumb_up_24"
-        android:layout_toRightOf="@id/country"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="15dp"
+        android:layout_below="@id/country"/>
+    <TextView
+        android:textColor="@android:color/white"
+        android:layout_below="@id/country"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textAlignment="center"
+        android:id="@+id/list_item_text"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/trash"
+        android:src="@drawable/ic_baseline_delete_24"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="15dp"
         android:layout_below="@id/country"/>
+
 
 </RelativeLayout>
 </androidx.cardview.widget.CardView>

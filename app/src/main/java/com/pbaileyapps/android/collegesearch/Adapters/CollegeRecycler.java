@@ -20,6 +20,10 @@ public class CollegeRecycler extends RecyclerView.Adapter<CollegeRecycler.Colleg
     private List<College> colleges;
     private Context context;
     private CollegeViewModel model;
+    public deleteInterface deleteInterfaceInstance;
+    public interface deleteInterface{
+        void deleteCollege(College college, int position);
+    }
     public CollegeRecycler(Context context, CollegeViewModel model) {
         super();
 
@@ -35,12 +39,13 @@ public class CollegeRecycler extends RecyclerView.Adapter<CollegeRecycler.Colleg
     static class CollegeViewHolder extends RecyclerView.ViewHolder{
         TextView countryView;
         TextView collegeView;
-        ImageView collegeImage;
+        ImageView collegeImage,deleteImage;
         public CollegeViewHolder(@NonNull View itemView) {
             super(itemView);
             collegeView = itemView.findViewById(R.id.list_item_text);
             countryView = itemView.findViewById(R.id.country);
             collegeImage = itemView.findViewById(R.id.thumbsup);
+            deleteImage = itemView.findViewById(R.id.trash);
         }
     }
     @NonNull
@@ -51,9 +56,22 @@ public class CollegeRecycler extends RecyclerView.Adapter<CollegeRecycler.Colleg
 
     @Override
     public void onBindViewHolder(@NonNull CollegeViewHolder holder, int position) {
-        holder.collegeView.setText(colleges.get(position).getName().toUpperCase());
-        holder.countryView.setText(colleges.get(position).getCountry().toUpperCase());
+
+        College college = colleges.get(position);
+        holder.collegeView.setText(college.getName().toUpperCase());
+        holder.countryView.setText(college.getCountry().toUpperCase());
         holder.collegeImage.setVisibility(View.INVISIBLE);
+        holder.deleteImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try{
+                    deleteInterfaceInstance.deleteCollege(college,position);
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     @Override

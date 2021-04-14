@@ -23,6 +23,9 @@ public class CollegeViewModel extends AndroidViewModel {
             new insertAsyncTask(collegeDao).execute(college);
         }
     }
+    public void deleteCollege(College college){
+        new deleteAsyncTask(collegeDao).execute(college);
+    }
     public LiveData<List<College>> getAllColleges(){
         return collegeDao.getAllColleges();
     }
@@ -36,6 +39,19 @@ public class CollegeViewModel extends AndroidViewModel {
         @Override
         protected Void doInBackground(College... colleges) {
             mDao.insertCollege(colleges[0]);
+            return null;
+        }
+    }
+    class deleteAsyncTask extends AsyncTask<College,Void,Void>{
+        private CollegeDao mDao;
+        public deleteAsyncTask(CollegeDao collegeDao){
+            super();
+            mDao = collegeDao;
+        }
+        @Override
+        protected Void doInBackground(College... colleges) {
+            College deletion = colleges[0];
+            mDao.deleteCollege(deletion);
             return null;
         }
     }
